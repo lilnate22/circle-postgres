@@ -8,4 +8,4 @@ COPY pg_hba.conf /etc/postgresql/9.4/main/pg_hba.conf
 RUN /etc/init.d/postgresql start
 RUN update-rc.d postgresql enable
 LABEL com.circleci.preserve-entrypoint=true
-ENTRYPOINT /etc/init.d/postgresql restart && /bin/bash
+ENTRYPOINT /etc/init.d/redis-server start && /etc/init.d/postgresql restart && /bin/bash
