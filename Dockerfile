@@ -8,4 +8,7 @@ COPY pg_hba.conf /etc/postgresql/9.4/main/pg_hba.conf
 RUN /etc/init.d/postgresql start
 RUN update-rc.d postgresql enable
 LABEL com.circleci.preserve-entrypoint=true
-ENTRYPOINT /etc/init.d/redis-server start && /etc/init.d/postgresql restart && /bin/bash
+CMD /etc/init.d/postgresql restart
+CMD echo "127.0.0.1  postgres" >> /etc/hosts
+CMD echo "127.0.0.1 redis" >> /etc/hosts
+ENTRYPOINT /etc/init.d/redis-server start  && /bin/bash
