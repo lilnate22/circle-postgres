@@ -7,6 +7,7 @@ RUN pip install tox
 COPY pg_hba.conf /etc/postgresql/9.4/main/pg_hba.conf
 LABEL com.circleci.preserve-entrypoint=true
 
-RUN echo "127.0.0.1  postgres" >> /etc/hosts
-RUN echo "127.0.0.1 redis" >> /etc/hosts
-ENTRYPOINT /etc/init.d/postgresql restart && /etc/init.d/redis-server start  && /bin/bash
+CMD echo "127.0.0.1  postgres" >> /etc/hosts
+CMD echo "127.0.0.1 redis" >> /etc/hosts
+
+ENTRYPOINT /bin/bash
