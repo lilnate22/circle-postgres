@@ -6,8 +6,6 @@ RUN pip install tox
 # copy our override
 COPY pg_hba.conf /etc/postgresql/9.4/main/pg_hba.conf
 LABEL com.circleci.preserve-entrypoint=true
+COPY start.bash start.bash
 
-CMD echo "127.0.0.1  postgres" >> /etc/hosts
-CMD echo "127.0.0.1 redis" >> /etc/hosts
-
-ENTRYPOINT /bin/bash
+ENTRYPOINT /bin/bash start.bash
